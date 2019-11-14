@@ -1,0 +1,7 @@
+def magic():
+    magic_num=7
+    user_guess: object = int(input("Guess a number between 1 and 10"))
+    if user_guess == magic_num:
+        print("Good job! " + str(user_guess) + " is correct!")
+    else:
+        print(str(user_guess) + " was not the correct number")
