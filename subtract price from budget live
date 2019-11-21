@@ -2,10 +2,12 @@ __author__ = 'Camulos'
 
 import requests
 from bs4 import BeautifulSoup
-
+            # Webpage to pull data from
 request = requests.get("https://www.etsy.com/listing/163636230/balsam-personalized-christmas-stockings?ref=finds_l&frs=1")
 content = request.content
 soup = BeautifulSoup(content, "html.parser")
+
+            #Element on page that hold price
 element = soup.find("span", {"class": "text-largest strong override-listing-price"})
 budget = 100.00
 string_price = element.text.strip() #$54.95
