@@ -1,0 +1,28 @@
+__author__ = 'Camulos'
+
+import requests
+from bs4 import BeautifulSoup
+
+request = requests.get("https://www.etsy.com/listing/163636230/balsam-personalized-christmas-stockings?ref=finds_l&frs=1")
+content = request.content
+soup = BeautifulSoup(content, "html.parser")
+element = soup.find("span", {"class": "text-largest strong override-listing-price"})
+budget = 100.00
+string_price = element.text.strip() #$54.95
+
+price_wo_symbol = string_price[1:] #$54.95
+
+price = (float(price_wo_symbol))
+
+if price < budget:
+    print ("This item is within your budget!")
+    print ("The current price is {} ".format(string_price))
+    budget = budget - price
+
+else:
+    print ("This item is too expensive!")
+    print("The current price is {}".format(string_price))
+    print("You are only allowed to spend {}".format(budget))
+
+print ("Your remaining budget is now ${}".format(budget))
+
